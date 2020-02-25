@@ -2,7 +2,7 @@
 namespace MinhasHoras\Services\Tokens;
 
 use Exception;
-use MinhasHoras\Config\Entity;
+use MinhasHoras\Lib\Entity;
 use MinhasHoras\Services\Users\User;
 
 class Token extends Entity

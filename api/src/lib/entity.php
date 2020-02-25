@@ -1,5 +1,7 @@
 <?php
-namespace MinhasHoras\Config;
+namespace MinhasHoras\Lib;
+
+use MinhasHoras\Config\Database;
 
 abstract class Entity
 {

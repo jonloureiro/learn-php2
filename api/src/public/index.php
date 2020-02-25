@@ -2,7 +2,6 @@
 
 use MinhasHoras\Config\Locale;
 use MinhasHoras\Services\Tokens\Token;
-use MinhasHoras\Services\Users\User;
 
 ini_set('display_errors', 1);
 
@@ -29,6 +28,7 @@ try {
     $user = $token->loginWithEmail();
     print_r($user);
 } catch (\Throwable $th) {
+    print_r($th->getMessage());
     echo "ERRO";
 }
 
