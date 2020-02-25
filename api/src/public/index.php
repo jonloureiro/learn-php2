@@ -21,7 +21,8 @@ foreach ($headers as $key => $header) {
 
 
 echo "<br>";
-$result = User::select([ 'name' => "Jonathan", 'email' => "me@jonloureiro.dev"]);
-print_r($result);
+$users = User::get([ 'is_admin' => "true" ], 'id, name, email');
+
+print_r($users);
 
 echo "<br><br>FIM";

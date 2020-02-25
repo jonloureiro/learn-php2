@@ -31,7 +31,20 @@ abstract class Entity
         $this->$key = $value;
     }
 
-    public static function select($filters = [], $columns = '*')
+    public static function get($filters = [], $columns = '*')
+    {
+        $objects = [];
+        $result = self::getResultFromSelect($filters, $columns);
+        if ($result) {
+            $class = get_called_class();
+            foreach ($result as $row) {
+                array_push($objects, $row);
+            }
+        }
+        return $objects;
+    }
+
+    public static function getResultFromSelect($filters = [], $columns = '*')
     {
         $sql = "SELECT $columns FROM public." . static::$tableName
             . static::getFilters($filters);
