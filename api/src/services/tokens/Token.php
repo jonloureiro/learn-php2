@@ -2,10 +2,10 @@
 namespace MinhasHoras\Services\Tokens;
 
 use Exception;
-use MinhasHoras\Lib\Entity;
+use MinhasHoras\Lib\Base;
 use MinhasHoras\Services\Users\User;
 
-class Token extends Entity
+class Token extends Base
 {
     public function loginWithEmail()
     {
