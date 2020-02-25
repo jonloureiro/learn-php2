@@ -7,6 +7,8 @@ use PDOException;
 
 class Database extends Singleton
 {
+    protected static $instance;
+
     public static function getDatabaseHandle()
     {
         if (self::$instance !== null) {

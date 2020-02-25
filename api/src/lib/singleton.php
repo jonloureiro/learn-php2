@@ -3,8 +3,6 @@ namespace MinhasHoras\Lib;
 
 abstract class Singleton
 {
-    protected static $instance;
-
     private function __construct()
     {
     }
