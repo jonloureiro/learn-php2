@@ -1,6 +1,7 @@
 <?php
 
 use MinhasHoras\Config\Locale;
+use MinhasHoras\Services\Tokens\Token;
 use MinhasHoras\Services\Users\User;
 
 ini_set('display_errors', 1);
@@ -19,10 +20,17 @@ foreach ($headers as $key => $header) {
     echo "$key: $header <br>";
 }
 
+$token = new Token([
+    'email' => "me@jonloureiro.dev",
+    'password' => "a"
+]);
 
-echo "<br>";
-$users = User::get([ 'is_admin' => "true" ], 'id, name, email');
+try {
+    $user = $token->loginWithEmail();
+    print_r($user);
+} catch (\Throwable $th) {
+    echo "ERRO";
+}
 
-print_r($users);
 
 echo "<br><br>FIM";
