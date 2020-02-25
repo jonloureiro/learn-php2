@@ -2,6 +2,7 @@
 
 use MinhasHoras\Config\Database;
 use MinhasHoras\Config\Locale;
+use MinhasHoras\Services\Users\User;
 
 ini_set('display_errors', 1);
 
@@ -21,8 +22,11 @@ foreach ($headers as $key => $header) {
 
 $sql = "SELECT * FROM public.user;";
 
-$result = Database::getResultFromQuery($sql);
 
+$result = Database::getResultFromQuery($sql);
 print_r($result);
+
+$usr = new User([ 'name' => "jonathan loureiro", 'password' => '123']);
+print_r($usr);
 
 echo "FIM";
