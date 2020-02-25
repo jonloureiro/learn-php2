@@ -30,4 +30,36 @@ abstract class Entity
     {
         $this->$key = $value;
     }
+
+    public static function select($filters = [], $columns = '*')
+    {
+        $sql = "SELECT $columns FROM public." . static::$tableName
+            . static::getFilters($filters);
+        return $sql;
+    }
+
+    private static function getFilters($filters)
+    {
+        $sql = '';
+
+        if (count($filters)) {
+            $sql = " WHERE 1 = 1";
+            foreach ($filters as $key => $value) {
+                $sql .= " AND $key = " . static::getFormattedValue($value);
+            }
+        }
+
+        return $sql . ";";
+    }
+
+    private static function getFormattedValue($value)
+    {
+        if (is_null($value)) {
+            return 'null';
+        }
+        if (gettype($value) === 'string') {
+            return "'$value'";
+        }
+        return $value;
+    }
 }

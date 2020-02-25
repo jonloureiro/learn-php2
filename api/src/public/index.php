@@ -30,4 +30,8 @@ $usr = new User([ 'name' => "jonathan loureiro", 'password' => '123']);
 $usr->name = "jonathan 2";
 echo $usr->name;
 
-echo "FIM";
+echo "<br><br>";
+echo User::select([ 'name' => "Jonathan", 'email' => "me@jonloureiro.dev"]);
+
+
+echo "<br><br>FIM";
