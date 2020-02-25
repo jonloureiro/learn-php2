@@ -14,14 +14,12 @@ class Database
             return self::$dbh;
         }
 
-        $envPath = realpath(dirname(__FILE__, 3). "/env.ini");
-        $env = parse_ini_file($envPath);
-
         try {
             self::$dbh = new PDO(
-                "pgsql:host={$env['host']};dbname={$env['database']}",
-                $env['username'],
-                $env['password'],
+                "pgsql:host=" . Env::get('host') .
+                ";dbname=" . Env::get('database'),
+                Env::get('username'),
+                Env::get('password'),
                 [
                     PDO::ATTR_PERSISTENT => true
                 ]
@@ -47,10 +45,5 @@ class Database
             return $sth->fetchAll(PDO::FETCH_ASSOC);
         }
         echo 'CONFIG/DATABASE.PHP: TRATAR ERRO;';
-    }
-
-    public static function testing()
-    {
-        echo "testando";
     }
 }
