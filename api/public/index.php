@@ -1,8 +1,8 @@
 <?php
 require_once(dirname(__FILE__, 2) . "/src/config/database.php");
 
-use function \Config\Database\getDatabaseHandle;
+use \Config\Database\Database;
 
-$dbh = getDatabaseHandle();
+Database::testing();
 
 echo "FIM";
