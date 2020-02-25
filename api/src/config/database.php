@@ -10,7 +10,7 @@ class Database
 
     public static function getDatabaseHandle()
     {
-        if (assert(self::$dbh)) {
+        if (self::$dbh !== null) {
             return self::$dbh;
         }
 
@@ -18,7 +18,7 @@ class Database
         $env = parse_ini_file($envPath);
 
         try {
-            $dbh = new PDO(
+            self::$dbh = new PDO(
                 "pgsql:host={$env['host']};dbname={$env['database']}",
                 $env['username'],
                 $env['password'],
@@ -26,7 +26,7 @@ class Database
                     PDO::ATTR_PERSISTENT => true
                 ]
             );
-            return $dbh;
+            return self::$dbh;
         } catch (PDOException $e) {
             die("Error: " . $e->getMessage());
         }
@@ -34,6 +34,12 @@ class Database
 
     public static function getResultFromQuery($sql)
     {
+        $dbh = self::getDatabaseHandle();
+        $sth = $dbh->prepare($sql);
+        if ($sth->execute()) {
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
+        }
+        echo 'CONFIG/DATABASE.PHP: TRATAR ERRO;';
     }
 
     public static function testing()
