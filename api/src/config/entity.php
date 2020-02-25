@@ -35,14 +35,18 @@ abstract class Entity
     {
         $sql = "SELECT $columns FROM public." . static::$tableName
             . static::getFilters($filters);
-        return $sql;
+        $result = Database::getResultFromQuery($sql);
+        if (empty($result)) {
+            return null;
+        }
+        return $result;
     }
 
     private static function getFilters($filters)
     {
         $sql = '';
 
-        if (count($filters)) {
+        if (!empty($filters)) {
             $sql = " WHERE 1 = 1";
             foreach ($filters as $key => $value) {
                 $sql .= " AND $key = " . static::getFormattedValue($value);

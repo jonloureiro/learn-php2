@@ -1,6 +1,5 @@
 <?php
 
-use MinhasHoras\Config\Database;
 use MinhasHoras\Config\Locale;
 use MinhasHoras\Services\Users\User;
 
@@ -15,23 +14,14 @@ $uri = $_SERVER['REQUEST_URI'];
 $protocol = $_SERVER['SERVER_PROTOCOL'];
 $headers = getallheaders();
 
-echo "$method $uri $protocol <br/>";
+echo "$method $uri $protocol <br>";
 foreach ($headers as $key => $header) {
-    echo "$key: $header <br/>";
+    echo "$key: $header <br>";
 }
 
-$sql = "SELECT * FROM public.user;";
 
-
-$result = Database::getResultFromQuery($sql);
+echo "<br>";
+$result = User::select([ 'name' => "Jonathan", 'email' => "me@jonloureiro.dev"]);
 print_r($result);
-
-$usr = new User([ 'name' => "jonathan loureiro", 'password' => '123']);
-$usr->name = "jonathan 2";
-echo $usr->name;
-
-echo "<br><br>";
-echo User::select([ 'name' => "Jonathan", 'email' => "me@jonloureiro.dev"]);
-
 
 echo "<br><br>FIM";
