@@ -1,21 +1,20 @@
 <?php
 namespace MinhasHoras\Config;
 
+use MinhasHoras\Lib\Singleton;
 use PDO;
 use PDOException;
 
-class Database
+class Database extends Singleton
 {
-    private static $dbh;
-
     public static function getDatabaseHandle()
     {
-        if (self::$dbh !== null) {
-            return self::$dbh;
+        if (self::$instance !== null) {
+            return self::$instance;
         }
 
         try {
-            self::$dbh = new PDO(
+            self::$instance = new PDO(
                 "pgsql:host=" . Env::get('host') .
                 ";dbname=" . Env::get('database'),
                 Env::get('username'),
@@ -24,7 +23,7 @@ class Database
                     PDO::ATTR_PERSISTENT => true
                 ]
             );
-            return self::$dbh;
+            return self::$instance;
         } catch (PDOException $e) {
             die("Error: " . $e->getMessage());
         }
@@ -39,8 +38,8 @@ class Database
             }
             $sql .= ";";
         }
-        $dbh = self::getDatabaseHandle();
-        $sth = $dbh->prepare($sql);
+        $instance = self::getDatabaseHandle();
+        $sth = $instance->prepare($sql);
         if ($sth->execute()) {
             return $sth->fetchAll(PDO::FETCH_ASSOC);
         }

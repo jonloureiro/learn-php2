@@ -1,7 +1,9 @@
 <?php
 namespace MinhasHoras\Config;
 
-class Locale
+use MinhasHoras\Lib\Singleton;
+
+class Locale extends Singleton
 {
     public static function set()
     {
