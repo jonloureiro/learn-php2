@@ -27,6 +27,7 @@ $result = Database::getResultFromQuery($sql);
 print_r($result);
 
 $usr = new User([ 'name' => "jonathan loureiro", 'password' => '123']);
-print_r($usr);
+$usr->name = "jonathan 2";
+echo $usr->name;
 
 echo "FIM";
