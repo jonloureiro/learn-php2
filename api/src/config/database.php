@@ -1,5 +1,5 @@
 <?php
-namespace Config\Database;
+namespace MinhasHoras\Config\Database;
 
 use PDO;
 use PDOException;
@@ -35,9 +35,9 @@ class Database
     public static function getResultFromQuery($sql)
     {
     }
+}
 
-    public static function testing()
-    {
-        echo "testando";
-    }
+function testing()
+{
+    echo "testando";
 }
