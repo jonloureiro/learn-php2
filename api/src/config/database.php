@@ -32,8 +32,15 @@ class Database
         }
     }
 
-    public static function getResultFromQuery($sql)
+    public static function getResultFromQuery($sql, int $limit = null, int $offset = null)
     {
+        if ($limit) {
+            $sql .= " LIMIT $limit";
+            if ($offset) {
+                $sql .= " OFFSET $offset";
+            }
+            $sql .= ";";
+        }
         $dbh = self::getDatabaseHandle();
         $sth = $dbh->prepare($sql);
         if ($sth->execute()) {

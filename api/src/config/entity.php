@@ -31,24 +31,27 @@ abstract class Entity
         $this->$key = $value;
     }
 
-    public static function get($filters = [], $columns = '*')
+    public static function get($filters = [], $columns = '*', int $limit = null, int $offset = null)
     {
         $objects = [];
-        $result = self::getResultFromSelect($filters, $columns);
+        $result = self::getResultFromSelect($filters, $columns, $limit, $offset);
         if ($result) {
             $class = get_called_class();
-            foreach ($result as $row) {
-                array_push($objects, $row);
+            foreach ($result as $key => $row) {
+                array_push($objects, new $class($row));
             }
+        }
+        if ($limit === 1) {
+            return $objects[0];
         }
         return $objects;
     }
 
-    public static function getResultFromSelect($filters = [], $columns = '*')
+    public static function getResultFromSelect($filters = [], $columns = '*', int $limit = null, int $offset = null)
     {
         $sql = "SELECT $columns FROM public." . static::$tableName
             . static::getFilters($filters);
-        $result = Database::getResultFromQuery($sql);
+        $result = Database::getResultFromQuery($sql, $limit, $offset);
         if (empty($result)) {
             return null;
         }
@@ -66,7 +69,7 @@ abstract class Entity
             }
         }
 
-        return $sql . ";";
+        return $sql;
     }
 
     private static function getFormattedValue($value)
