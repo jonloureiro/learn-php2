@@ -1,6 +1,7 @@
 <?php
 
 use MinhasHoras\Config\Locale;
+use MinhasHoras\Lib\JWT;
 use MinhasHoras\Services\Tokens\Token;
 
 ini_set('display_errors', 1);
@@ -32,5 +33,8 @@ try {
     echo "ERRO";
 }
 
+
+echo "<br><br>";
+print_r(JWT::sign(['name'=>"jonathan"]));
 
 echo "<br><br>FIM";
