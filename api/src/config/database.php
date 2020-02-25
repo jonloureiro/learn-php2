@@ -14,7 +14,7 @@ class Database
             return self::$dbh;
         }
 
-        $envPath = realpath(dirname(__FILE__). "/../env.ini");
+        $envPath = realpath(dirname(__FILE__, 3). "/env.ini");
         $env = parse_ini_file($envPath);
 
         try {
