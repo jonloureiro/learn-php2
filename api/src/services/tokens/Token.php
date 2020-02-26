@@ -3,16 +3,28 @@ namespace MinhasHoras\Services\Tokens;
 
 use Exception;
 use MinhasHoras\Lib\Base;
+use MinhasHoras\Lib\JWT;
 use MinhasHoras\Services\Users\User;
 
 class Token extends Base
 {
-    public function loginWithEmail()
+    public function getTokenWithEmail()
     {
-        $user = User::get(['email' => "$this->email"], 'email, password', 1);
+        $user = User::get(['email' => "$this->email"], 'id, password, end_date', 1);
         if (!empty($user)) {
+            if ($user->end_date) {
+                throw new Exception("SERVICES/TOKENS");
+            }
+
             if (password_verify($this->password, $user->password)) {
-                return $user;
+                unset($user->password);
+                $token = JWT::sign([
+                    'uid' => $user->id
+                ]);
+                return [
+                    $user,
+                    $token
+                ];
             }
         }
         throw new Exception("SERVICES/TOKENS");

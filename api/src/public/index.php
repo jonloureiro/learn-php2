@@ -19,6 +19,15 @@ echo "$method $uri $protocol <br>";
 foreach ($headers as $key => $header) {
     echo "$key: $header <br>";
 }
+echo "<br>";
+
+if ($uri === '/' || $uri === '' || $uri === '/index.php') {
+    $uri = 'test.php';
+}
+
+print_r($uri);
+var_dump($uri);
+echo "<br><br>";
 
 $token = new Token([
     'email' => "me@jonloureiro.dev",
@@ -26,7 +35,7 @@ $token = new Token([
 ]);
 
 try {
-    $user = $token->loginWithEmail();
+    $user = $token->getTokenWithEmail();
     print_r($user);
 } catch (\Throwable $th) {
     print_r($th->getMessage());
