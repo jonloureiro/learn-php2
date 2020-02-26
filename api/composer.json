@@ -1,7 +1,7 @@
 {
   "autoload": {
     "psr-4": {
-      "MinhasHoras\\": "src/"
+      "MinhasHoras\\Api\\": "src/"
     }
   }
 }

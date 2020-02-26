@@ -1,10 +1,10 @@
 <?php
-namespace MinhasHoras\Lib;
+namespace MinhasHoras\Api\Lib;
 
 use Exception;
-use MinhasHoras\Config\Env;
+use MinhasHoras\Api\Config\Env;
 
-class JWT extends Singleton
+class Jwt extends Singleton
 {
     private static $header;
 
@@ -16,7 +16,7 @@ class JWT extends Singleton
         self::$header = self::base64UrlEncode(
             json_encode([
                 'alg' => "HS256",
-                'typ' => "JWT"
+                'typ' => "Jwt"
             ])
         );
         return self::$header;

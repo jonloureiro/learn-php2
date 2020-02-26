@@ -1,7 +1,7 @@
 <?php
-namespace MinhasHoras\Config;
+namespace MinhasHoras\Api\Config;
 
-use MinhasHoras\Lib\Singleton;
+use MinhasHoras\Api\Lib\Singleton;
 use PDO;
 use PDOException;
 

@@ -1,10 +1,10 @@
 <?php
-namespace MinhasHoras\Services\Tokens;
+namespace MinhasHoras\Api\Services\Tokens;
 
 use Exception;
-use MinhasHoras\Lib\Base;
-use MinhasHoras\Lib\JWT;
-use MinhasHoras\Services\Users\User;
+use MinhasHoras\Api\Lib\Base;
+use MinhasHoras\Api\Lib\Jwt;
+use MinhasHoras\Api\Services\Users\User;
 
 class Token extends Base
 {
@@ -18,7 +18,7 @@ class Token extends Base
 
             if (password_verify($this->password, $user->password)) {
                 unset($user->password);
-                $token = JWT::sign([
+                $token = Jwt::sign([
                     'uid' => $user->id
                 ]);
                 return [

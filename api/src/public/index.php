@@ -1,8 +1,8 @@
 <?php
 
-use MinhasHoras\Config\Locale;
-use MinhasHoras\Lib\JWT;
-use MinhasHoras\Services\Tokens\Token;
+use MinhasHoras\Api\Config\Locale;
+use MinhasHoras\Api\Lib\Jwt;
+use MinhasHoras\Api\Services\Tokens\Token;
 
 ini_set('display_errors', 1);
 
@@ -44,10 +44,10 @@ try {
 
 
 echo "<br><br>";
-$token = JWT::sign(['name'=>"jonathan"]);
+$token = Jwt::sign(['name'=>"jonathan"]);
 print_r($token);
 echo "<br><br>";
-if ($result = JWT::verify($token)) {
+if ($result = Jwt::verify($token)) {
     echo "Token válida";
     print_r($result);
 }
