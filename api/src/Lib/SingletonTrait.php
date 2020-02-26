@@ -1,7 +1,7 @@
 <?php
 namespace MinhasHoras\Api\Lib;
 
-abstract class Singleton
+trait SingletonTrait
 {
     private function __construct()
     {
