@@ -1,8 +1,8 @@
 <?php
 
-namespace MinhasHoras\Api\Services\Users;
+namespace MinhasHoras\Services\Users;
 
-use MinhasHoras\Api\Lib\Entity;
+use MinhasHoras\Lib\Entity;
 
 class User extends Entity
 {

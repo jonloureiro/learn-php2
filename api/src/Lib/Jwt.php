@@ -1,9 +1,9 @@
 <?php
 
-namespace MinhasHoras\Api\Lib;
+namespace MinhasHoras\Lib;
 
 use Exception;
-use MinhasHoras\Api\Config\Env;
+use MinhasHoras\Config\Env;
 
 class Jwt
 {

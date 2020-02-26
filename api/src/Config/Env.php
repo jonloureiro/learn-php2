@@ -1,8 +1,8 @@
 <?php
 
-namespace MinhasHoras\Api\Config;
+namespace MinhasHoras\Config;
 
-use MinhasHoras\Api\Lib\SingletonTrait;
+use MinhasHoras\Lib\SingletonTrait;
 
 class Env
 {

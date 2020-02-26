@@ -1,11 +1,11 @@
 <?php
 
-namespace MinhasHoras\Api\Services\Tokens;
+namespace MinhasHoras\Services\Tokens;
 
 use Exception;
-use MinhasHoras\Api\Lib\Base;
-use MinhasHoras\Api\Lib\Jwt;
-use MinhasHoras\Api\Services\Users\User;
+use MinhasHoras\Lib\Base;
+use MinhasHoras\Lib\Jwt;
+use MinhasHoras\Services\Users\User;
 
 class Token extends Base
 {

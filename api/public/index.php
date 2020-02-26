@@ -1,8 +1,8 @@
 <?php
 
-use MinhasHoras\Api\Config\Locale;
-use MinhasHoras\Api\Lib\Jwt;
-use MinhasHoras\Api\Services\Tokens\Token;
+use MinhasHoras\Config\Locale;
+use MinhasHoras\Lib\Jwt;
+use MinhasHoras\Services\Tokens\Token;
 
 ini_set('display_errors', 1);
 
