@@ -1,4 +1,5 @@
 <?php
+
 namespace MinhasHoras\Api\Services\Tokens;
 
 use Exception;

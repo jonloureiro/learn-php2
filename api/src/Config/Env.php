@@ -1,4 +1,5 @@
 <?php
+
 namespace MinhasHoras\Api\Config;
 
 use MinhasHoras\Api\Lib\SingletonTrait;

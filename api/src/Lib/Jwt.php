@@ -1,4 +1,5 @@
 <?php
+
 namespace MinhasHoras\Api\Lib;
 
 use Exception;

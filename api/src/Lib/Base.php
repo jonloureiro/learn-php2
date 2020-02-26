@@ -1,4 +1,5 @@
 <?php
+
 namespace MinhasHoras\Api\Lib;
 
 abstract class Base

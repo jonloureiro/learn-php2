@@ -1,4 +1,5 @@
 <?php
+
 namespace MinhasHoras\Api\Services\Users;
 
 use MinhasHoras\Api\Lib\Entity;
