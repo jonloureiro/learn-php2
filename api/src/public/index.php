@@ -35,6 +35,12 @@ try {
 
 
 echo "<br><br>";
-print_r(JWT::sign(['name'=>"jonathan"]));
+$token = JWT::sign(['name'=>"jonathan"]);
+print_r($token);
+echo "<br><br>";
+if ($result = JWT::verify($token)) {
+    echo "Token válida";
+    print_r($result);
+}
 
 echo "<br><br>FIM";

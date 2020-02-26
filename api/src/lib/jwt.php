@@ -1,6 +1,7 @@
 <?php
 namespace MinhasHoras\Lib;
 
+use Exception;
 use MinhasHoras\Config\Env;
 
 class JWT extends Singleton
@@ -57,5 +58,24 @@ class JWT extends Singleton
         $payload = self::payload($data);
         $signature = self::signature($header, $payload);
         return "$header.$payload.$signature";
+    }
+
+    public static function verify(string $token)
+    {
+        [$header, $payload, $signature] = explode('.', $token);
+        $newSignature = self::signature($header, $payload);
+
+        if (!hash_equals($newSignature, $signature)) {
+            throw new Exception('Token inválida.');
+        }
+
+        $payload = json_decode(base64_decode($payload), true);
+        $diff = intval($payload['exp']) - time();
+
+        if ($diff < 0) {
+            throw new Exception('tempo expirado');
+        }
+
+        return $payload;
     }
 }
