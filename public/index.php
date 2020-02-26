@@ -13,7 +13,8 @@ Locale::set();
 
 $request = new Request();
 print_r($request->getBody());
-print_r($_GET);
+print_r($request->getParams());
+
 
 
 // $token = new Token([

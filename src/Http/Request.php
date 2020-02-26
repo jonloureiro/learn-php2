@@ -12,7 +12,6 @@ class Request extends Base implements RequestInterface
           "method" => strtolower($_SERVER['REQUEST_METHOD']),
           "uri" => strtolower($_SERVER['REQUEST_URI']),
           "headers" => $this->getAllHeaders(),
-          // "body" => "",
         ]);
     }
 
@@ -43,5 +42,14 @@ class Request extends Base implements RequestInterface
         );
 
         return $this->body;
+    }
+
+    public function getParams()
+    {
+        if (!empty($this->params)) {
+            return $this->params;
+        }
+        $this->params = $_GET;
+        return $this->params;
     }
 }
