@@ -2,17 +2,30 @@
 
 namespace MinhasHoras\Services\Users;
 
-use MinhasHoras\Lib\SingletonTrait;
+use Exception;
+use MinhasHoras\Lib\Controller;
 
-class UsersController
+class UsersController extends Controller
 {
-    use SingletonTrait;
+    public static function run($method, $request = null)
+    {
+        parent::run($method, $request);
+
+        switch ($method) {
+            case 'post':
+
+                break;
+            default:
+                //TODO
+                throw new Exception('TRATAR');
+        }
+    }
 
     private static function index(int $limit = 10, int $offset = 0)
     {
     }
 
-    private static function show()
+    private static function show(int $id)
     {
     }
 
@@ -26,10 +39,5 @@ class UsersController
 
     private static function destroy()
     {
-    }
-
-    public static function testing()
-    {
-        echo "testando";
     }
 }

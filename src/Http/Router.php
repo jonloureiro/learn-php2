@@ -14,7 +14,6 @@ class Router
     public static function __callStatic($name, $arguments)
     {
         [$path, ] = $arguments;
-        print_r($path);
         self::route($name, $path);
     }
 
@@ -49,6 +48,6 @@ class Router
         }
 
         $call = self::getControllers()[$controller];
-        eval("$call::testing('$method');");
+        $call::run($method, $request);
     }
 }
