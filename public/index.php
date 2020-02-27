@@ -19,5 +19,5 @@ try {
     (new Response([
         "code" => $e->getCode() === 0 ? 500 : $e->getCode(),
         "message" => $e->getMessage()
-    ]))->send();
+    ]))->json();
 }

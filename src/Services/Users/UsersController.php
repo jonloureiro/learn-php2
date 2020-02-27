@@ -26,6 +26,6 @@ class UsersController extends Controller
         (new Response([
             "message" => "Ainda não implementei",
             "code" => "501"
-        ]))->send();
+        ]))->json();
     }
 }
