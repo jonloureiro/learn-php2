@@ -20,13 +20,18 @@ abstract class Base
         }
     }
 
+    public function getValues()
+    {
+        return $this->values;
+    }
+
     public function __get($key)
     {
-        return $this->$key;
+        return $this->values[$key];
     }
 
     public function __set($key, $value)
     {
-        $this->$key = $value;
+        $this->values[$key] = $value;
     }
 }
