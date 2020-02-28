@@ -3,5 +3,9 @@
     "psr-4": {
       "MinhasHoras\\": "src/"
     }
+  },
+  "require": {
+    "league/route": "^4.3",
+    "laminas/laminas-diactoros": "^2.2"
   }
 }
