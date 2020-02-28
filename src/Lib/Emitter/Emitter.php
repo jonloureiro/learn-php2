@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace MinhasHoras\Lib\Emitter;
 
-use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use Psr\Http\Message\ResponseInterface;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter as LaminasEmitter;
 
 class Emitter implements EmitterInterface
 {
@@ -13,7 +13,7 @@ class Emitter implements EmitterInterface
 
     public function __construct()
     {
-        $this->emitter = new SapiEmitter();
+        $this->emitter = new LaminasEmitter();
     }
 
     public function emit(ResponseInterface $response) : bool

@@ -3,15 +3,18 @@
 declare(strict_types=1);
 
 use MinhasHoras\App;
+use MinhasHoras\Routes;
 use MinhasHoras\Lib\Emitter\Emitter;
 use MinhasHoras\Lib\Route\Router;
+use Laminas\Diactoros\ServerRequestFactory as LaminasServerRequestFactory;
+use Laminas\Diactoros\ResponseFactory as LaminasResponseFactory;
 
 require_once dirname(__FILE__, 2) . "/vendor/autoload.php";
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+$serverRequestFactory = new  LaminasServerRequestFactory();
+$responseFactory = new LaminasResponseFactory();
 
-$serverRequest = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
+$serverRequest = $serverRequestFactory::fromGlobals(
     $_SERVER,
     $_GET,
     $_POST,
@@ -20,13 +23,8 @@ $serverRequest = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
 );
 
 $router = new Router();
-
-$router->map('GET', '/', function (ServerRequestInterface $request) : ResponseInterface {
-    $response = new Laminas\Diactoros\Response;
-    $response->getBody()->write('<h1>Hello, World!</h1>');
-    return $response;
-});
+$routes = new Routes($router, $responseFactory);
 
 $emitter = new Emitter();
 
-new App($serverRequest, $router, $emitter);
+new App($serverRequest, $routes->getRouter(), $emitter);
