@@ -1,32 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MinhasHoras;
 
-use Exception;
-use MinhasHoras\Http\RequestInterface;
-use MinhasHoras\Http\Router;
-use MinhasHoras\Lib\Base;
+use Psr\Http\Message\ServerRequestInterface;
+use MinhasHoras\Lib\Emitter\EmitterInterface;
+use MinhasHoras\Lib\Route\RouterInterface;
 
-class App extends Base
+class App
 {
-    public function __construct(RequestInterface $request)
-    {
-        $this->request = $request;
-
-        $isApi = substr($request->uri, 0, 5) === "/api/";
-        $endpoint = substr($request->uri, 4);
-
-        if ($isApi) {
-            Router::route(
-                $request->method,
-                $endpoint,
-                $request,
-            );
-        } elseif ($request->method === 'get') {
-            //TODO: MANDAR PARA VER SE É DO CLIENT
-        } else {
-            // TODO: ORGANIZAR EXCEPTION
-            throw new Exception();
-        }
+    public function __construct(
+        ServerRequestInterface $serverRequest,
+        RouterInterface $router,
+        EmitterInterface $emitter
+    ) {
+        $response = $router->dispatch($serverRequest);
+        $emitter->emit($response);
     }
 }
