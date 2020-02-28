@@ -27,13 +27,19 @@ class ErrorMiddleware implements MiddlewareInterface
             $message = $t->getMessage();
 
             if ($code === 0) {
-                $code = 500;
+                $code = 501;
             }
             if ($message === "") {
                 $message = "Internal Server Error";
             }
-
-            return $this->responseFactory->createResponse($code, $message);
+            $response = $this->responseFactory->createResponse($code, $message);
+            $response->getBody()->write(
+                json_encode([
+                    "code" => "$code",
+                    "message" => "$message"
+                ])
+            );
+            return $response->withAddedHeader('content-type', 'application/json');
         }
     }
 }
