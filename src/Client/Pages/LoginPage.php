@@ -10,7 +10,7 @@ class LoginPage extends Page
 {
     protected function render(): string
     {
-        $templates = new PlatesEngine(dirname(__FILE__, 2) . '/templates');
+        $templates = new PlatesEngine(dirname(__FILE__, 2) . '/Templates');
         return $templates->render('Login', ['name' => 'Jonathan']);
     }
 }
