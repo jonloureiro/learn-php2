@@ -1,18 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MinhasHoras\Middlewares;
 
 use Throwable;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 class ErrorMiddleware implements MiddlewareInterface
 {
-    private $responseFactory;
-
     public function __construct(ResponseFactoryInterface $responseFactory)
     {
         $this->responseFactory = $responseFactory;
