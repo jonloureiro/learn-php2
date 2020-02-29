@@ -11,5 +11,5 @@ use League\Route\Route as LeagueRoute;
 interface RouterInterface
 {
     public function dispatch(ServerRequestInterface $request): ResponseInterface;
-    public function api(string $method, string $path, $handler): LeagueRoute;
+    public function add(string $method, string $path, $handler): LeagueRoute;
 }

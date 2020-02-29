@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MinhasHoras\Services\Hello;
+namespace MinhasHoras\Api\Hello;
 
 use MinhasHoras\Http\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;

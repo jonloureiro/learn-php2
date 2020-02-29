@@ -4,15 +4,15 @@ use MinhasHoras\App;
 use MinhasHoras\Http\Emitter;
 use MinhasHoras\Http\ResponseFactory;
 use MinhasHoras\Http\ServerRequestFactory;
-use MinhasHoras\Route\Router;
-use MinhasHoras\Services\Hello\HelloController;
+use MinhasHoras\Route\ApiRouter;
+use MinhasHoras\Api\Hello\HelloController;
 
 require_once dirname(__FILE__, 2) . "/vendor/autoload.php";
 
 $serverRequestFactory = new ServerRequestFactory();
-$router = new Router(new ResponseFactory());
+$router = new ApiRouter(new ResponseFactory());
 
-$router->api('GET', '/hello', [HelloController::class, 'world']);
+$router->add('GET', '/hello', [HelloController::class, 'world']);
 
 $emitter = new Emitter();
 
