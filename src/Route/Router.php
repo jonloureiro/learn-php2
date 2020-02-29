@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace MinhasHoras\Route;
 
+use MinhasHoras\Middlewares\ErrorMiddleware;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use MinhasHoras\Middlewares\ErrorMiddleware;
 use League\Route\Router as LeagueRouter;
 use League\Route\Strategy\JsonStrategy as LeagueJsonStrategy;
+use League\Route\Route as LeagueRoute;
 
 class Router implements RouterInterface
 {
@@ -29,8 +30,8 @@ class Router implements RouterInterface
         return $this->router->dispatch($request);
     }
 
-    public function api(string $method, string $path, $handler): void
+    public function api(string $method, string $path, $handler): LeagueRoute
     {
-        $this->api->map($method, $path, $handler);
+        return $this->api->map($method, $path, $handler);
     }
 }
