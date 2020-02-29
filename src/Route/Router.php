@@ -13,6 +13,8 @@ use League\Route\Strategy\JsonStrategy as LeagueJsonStrategy;
 
 class Router implements RouterInterface
 {
+    private $router;
+    private $api;
     public function __construct(ResponseFactoryInterface $responseFactory)
     {
         $this->router = new LeagueRouter();

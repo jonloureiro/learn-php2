@@ -12,6 +12,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class ErrorMiddleware implements MiddlewareInterface
 {
+    private $responseFactory;
+
     public function __construct(ResponseFactoryInterface $responseFactory)
     {
         $this->responseFactory = $responseFactory;

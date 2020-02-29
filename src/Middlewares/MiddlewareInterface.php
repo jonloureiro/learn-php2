@@ -9,6 +9,5 @@ use Psr\Http\Server\MiddlewareInterface as PsrMiddlewareInterface;
 
 interface MiddlewareInterface extends PsrMiddlewareInterface
 {
-    private $responseFactory;
     public function __construct(ResponseFactoryInterface $responseFactory);
 }

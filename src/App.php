@@ -15,15 +15,14 @@ class App
         RouterInterface $router,
         EmitterInterface $emitter
     ) {
-        echo "aqui";
-        // $serverRequest = $serverRequestFactory->fromGlobals(
-        //     $_SERVER,
-        //     $_GET,
-        //     $_POST,
-        //     $_COOKIE,
-        //     $_FILES
-        // );
-        // $response = $router->dispatch($serverRequest);
-        // $emitter->emit($response);
+        $serverRequest = $serverRequestFactory->fromGlobals(
+            $_SERVER,
+            $_GET,
+            $_POST,
+            $_COOKIE,
+            $_FILES
+        );
+        $response = $router->dispatch($serverRequest);
+        $emitter->emit($response);
     }
 }
