@@ -1,57 +1,34 @@
 <?php
 
+ini_set("display_errors", 1);
+
 declare(strict_types=1);
 
 use MinhasHoras\App;
+use MinhasHoras\Http\Emitter;
+use MinhasHoras\Http\ResponseFactory;
+use MinhasHoras\Http\ServerRequestFactory;
+use MinhasHoras\Route\Router;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use MinhasHoras\Middlewares\ErrorMiddleware;
-use Laminas\Diactoros\ResponseFactory as LaminasResponseFactory;
-use Laminas\Diactoros\ServerRequestFactory as LaminasServerRequestFactory;
-use Laminas\HttpHandlerRunner\Emitter\SapiEmitter as LaminasEmitter;
-use League\Route\Router as LeagueRouter;
-use League\Route\RouteGroup as LeagueRouteGroup;
-use League\Route\Strategy\JsonStrategy as LeagueJsonStrategy;
 
 require_once dirname(__FILE__, 2) . "/vendor/autoload.php";
 
-new App();
+// $serverRequestFactory = new ServerRequestFactory();
+// $router = new Router(new ResponseFactory());
 
+// $router->api('GET', '/', function (ServerRequestInterface $request) : ResponseInterface {
+//     $responseFactory = new ResponseFactory();
+//     $response = $responseFactory->createResponse();
+//     $response->getBody()->write(
+//         json_encode([
+//             "test" => "test"
+//         ])
+//     );
+//     return $response->withStatus(200);
+// });
 
-function old()
-{
-    $serverRequestFactory = new LaminasServerRequestFactory();
-    $responseFactory = new LaminasResponseFactory();
-    $jsonStrategy = new LeagueJsonStrategy($responseFactory);
-    $router = new LeagueRouter();
-    $emitter = new LaminasEmitter();
+// $emitter = new Emitter();
 
-    $serverRequest = $serverRequestFactory::fromGlobals(
-            $_SERVER,
-            $_GET,
-            $_POST,
-            $_COOKIE,
-            $_FILES
-        );
-
-
-    $apiRouteGroup = $router->group('/api', function () {
-    });
-    $apiRouteGroup->middleware(new ErrorMiddleware($responseFactory));
-    $apiRouteGroup->setStrategy($jsonStrategy);
-    $apiRouteGroup->map('POST', '/', function (ServerRequestInterface $request) : ResponseInterface {
-        $responseFactory = new LaminasResponseFactory();
-        $response = $responseFactory->createResponse();
-        $response->getBody()->write(
-                json_encode([
-                    "test" => "test"
-                ])
-            );
-        return $response->withStatus(203);
-    });
-
-
-    $response = $router->dispatch($serverRequest);
-    $emitter->emit($response);
-}
+// new App($serverRequestFactory, $router, $emitter);

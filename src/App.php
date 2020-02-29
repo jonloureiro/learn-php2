@@ -5,17 +5,25 @@ declare(strict_types=1);
 namespace MinhasHoras;
 
 use MinhasHoras\Http\EmitterInterface;
+use MinhasHoras\Http\ServerRequestFactoryInterface;
 use MinhasHoras\Route\RouterInterface;
-use Psr\Http\Message\ResponseFactoryInterface;
-use Psr\Http\Message\ServerRequestFactoryInterface;
 
 class App
 {
     public function __construct(
         ServerRequestFactoryInterface $serverRequestFactory,
-        ResponseFactoryInterface $responseFactory,
         RouterInterface $router,
         EmitterInterface $emitter
     ) {
+        echo "aqui";
+        // $serverRequest = $serverRequestFactory->fromGlobals(
+        //     $_SERVER,
+        //     $_GET,
+        //     $_POST,
+        //     $_COOKIE,
+        //     $_FILES
+        // );
+        // $response = $router->dispatch($serverRequest);
+        // $emitter->emit($response);
     }
 }
