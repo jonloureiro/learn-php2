@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace MinhasHoras\Route;
 
-use MinhasHoras\Middlewares\ErrorMiddleware;
-use League\Route\Strategy\JsonStrategy as LeagueJsonStrategy;
+use MinhasHoras\Route\Strategy\JsonStrategy;
 
 class ApiRouter extends Router
 {
@@ -13,6 +12,6 @@ class ApiRouter extends Router
     {
         $this->routes = $this->router->group('/api', function () {
         });
-        $this->routes->setStrategy(new LeagueJsonStrategy($this->responseFactory));
+        $this->routes->setStrategy(new JsonStrategy($this->responseFactory));
     }
 }
