@@ -13,7 +13,6 @@ class ApiRouter extends Router
     {
         $this->routes = $this->router->group('/api', function () {
         });
-        $this->routes->middleware(new ErrorMiddleware($this->responseFactory));
         $this->routes->setStrategy(new LeagueJsonStrategy($this->responseFactory));
     }
 }
