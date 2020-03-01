@@ -9,6 +9,8 @@ use MinhasHoras\Http\ServerRequestFactory;
 use MinhasHoras\Route\ApiRouter;
 use MinhasHoras\Route\ClientRouter;
 use MinhasHoras\Route\RouterInterface;
+use MinhasHoras\Route\Strategy\ApplicationStrategy;
+use MinhasHoras\Route\Strategy\JsonStrategy;
 
 require_once dirname(__FILE__, 2) . "/vendor/autoload.php";
 
@@ -16,11 +18,15 @@ $isGet = strtolower($_SERVER['REQUEST_METHOD']) === 'get';
 $isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
 
 if ($isApi) {
-    $router = new ApiRouter(new ResponseFactory());
+    $responseFactory = new ResponseFactory();
+    $strategy = new JsonStrategy($responseFactory);
+    $router = new ApiRouter($responseFactory, $strategy);
     $router->add('GET', '/hello', [HelloController::class, 'world']);
     common($router);
 } elseif ($isGet) {
-    $router = new ClientRouter(new ResponseFactory());
+    $responseFactory = new ResponseFactory();
+    $strategy = new ApplicationStrategy($responseFactory);
+    $router = new ClientRouter($responseFactory, $strategy);
     $router->add('GET', '/login', LoginPage::class);
     common($router);
 } else {

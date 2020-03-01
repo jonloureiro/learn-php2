@@ -9,7 +9,7 @@ use League\Route\Strategy\JsonStrategy as LeagueJsonStrategy;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class JsonStrategy extends LeagueJsonStrategy
+class JsonStrategy extends LeagueJsonStrategy implements StrategyInterface
 {
     public function invokeRouteCallable(Route $route, ServerRequestInterface $request): ResponseInterface
     {

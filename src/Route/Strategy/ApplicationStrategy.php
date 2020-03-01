@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class ApplicationStrategy extends LeagueApplicationStrategy
+class ApplicationStrategy extends LeagueApplicationStrategy implements StrategyInterface
 {
     protected $responseFactory;
 

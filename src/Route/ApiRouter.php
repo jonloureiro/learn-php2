@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace MinhasHoras\Route;
 
-use MinhasHoras\Route\Strategy\JsonStrategy;
+use MinhasHoras\Route\Strategy\StrategyInterface;
 
 class ApiRouter extends Router
 {
-    protected function initRoutes(): void
+    protected function initRoutes(StrategyInterface $strategy): void
     {
         $this->routes = $this->router->group('/api', function () {
         });
-        $this->routes->setStrategy(new JsonStrategy($this->responseFactory));
+        $this->routes->setStrategy($strategy);
     }
 }
