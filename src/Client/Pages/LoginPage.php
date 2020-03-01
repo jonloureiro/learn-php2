@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace MinhasHoras\Client\Pages;
 
-use League\Plates\Engine as PlatesEngine;
+use MinhasHoras\Http\TemplateEngineInterface;
 
 class LoginPage extends Page
 {
-    protected function render(): string
+    protected function render(TemplateEngineInterface $templateEngine): string
     {
-        $templates = new PlatesEngine(dirname(__FILE__, 2) . '/Templates');
-        return $templates->render('Login', ['name' => 'Jonathan']);
+        return $templateEngine->render('Login', ['name' => 'Jonathan']);
     }
 }

@@ -6,6 +6,7 @@ use MinhasHoras\Client\Pages\LoginPage;
 use MinhasHoras\Http\Emitter;
 use MinhasHoras\Http\ResponseFactory;
 use MinhasHoras\Http\ServerRequestFactory;
+use MinhasHoras\Http\TemplateEngine;
 use MinhasHoras\Route\ApiRouter;
 use MinhasHoras\Route\ClientRouter;
 use MinhasHoras\Route\RouterInterface;
@@ -25,7 +26,8 @@ if ($isApi) {
     common($router);
 } elseif ($isGet) {
     $responseFactory = new ResponseFactory();
-    $strategy = new ApplicationStrategy($responseFactory);
+    $templateEngine = new TemplateEngine(dirname(__FILE__, 2) . "/src/Client/Templates");
+    $strategy = new ApplicationStrategy($responseFactory, $templateEngine);
     $router = new ClientRouter($responseFactory, $strategy);
     $router->add('GET', '/login', LoginPage::class);
     common($router);
