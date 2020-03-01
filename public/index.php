@@ -32,8 +32,8 @@ if ($isApi) {
     $router->add('GET', '/login', LoginPage::class);
     common($router);
 } else {
-    echo "<h3>Algo de errado não está certo</h3>";
-    die();
+    $templateEngine = new TemplateEngine(dirname(__FILE__, 2) . "/src/Client/Templates");
+    echo $templateEngine->render('Error', ['message' => 'Algo de errado não está certo']);
 }
 
 function common(RouterInterface $router): void
