@@ -13,6 +13,16 @@ use League\Route\Router;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
+$env = parse_ini_file(
+    dirname(__DIR__) . '/config/.env'
+);
+
+if ($env) {
+    foreach ($env as $key => $value) {
+        putenv("$key=$value");
+    }
+}
+
 $isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
 
 $request = ServerRequestFactory::fromGlobals(
