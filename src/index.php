@@ -1,13 +1,14 @@
 <?php
 
-use Laminas\Diactoros\Response;
 use Laminas\Diactoros\ServerRequestFactory;
 use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use League\Route\Router;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 require_once dirname(__DIR__) . "/vendor/autoload.php";
+require_once dirname(__FILE__) . "/routes.php";
+
+// $isGet = strtolower($_SERVER['REQUEST_METHOD']) === 'get';
+$isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
 
 $request = ServerRequestFactory::fromGlobals(
     $_SERVER,
@@ -19,12 +20,11 @@ $request = ServerRequestFactory::fromGlobals(
 
 $router = new Router();
 
-$router->map('GET', '/', function (ServerRequestInterface $request) : ResponseInterface {
-    $response = new Response();
-    $response->getBody()->write('<h1>Hello, World!</h1>');
-    return $response;
-});
+if ($isApi) {
+    routesApi($router);
+} else {
+    routesClient($router);
+}
 
 $response = $router->dispatch($request);
-
 (new SapiEmitter)->emit($response);
