@@ -1,1 +1,9 @@
-<?php $this->layout('Html5', ['title' => 'Error']);
+<?php $this->layout('Base', [
+    'title' => 'Erro | Minhas Horas',
+    'stylesheets' => [
+      'css/error.css'
+    ]
+]); ?>
+<body>
+
+</body>
