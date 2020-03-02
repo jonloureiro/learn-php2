@@ -1,7 +1,5 @@
 <?php
 
-ini_set("display_errors", 1);
-
 use App\Api\Hello\HelloController;
 use App\Client\Login\LoginPage;
 use App\Lib\Strategy\ApiStrategy;
@@ -13,7 +11,7 @@ use League\Plates\Engine;
 use League\Route\RouteGroup;
 use League\Route\Router;
 
-require_once dirname(__DIR__) . "/vendor/autoload.php";
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 $isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
 
@@ -35,7 +33,7 @@ if ($isApi) {
     });
     $routes->setStrategy($strategy);
 } else {
-    $templates = new Engine(dirname(__DIR__) . "/templates");
+    $templates = new Engine(dirname(__DIR__) . '/templates');
     $strategy = new ClientStrategy($responseFactory, $templates);
     $routes = $router->group('/', function (RouteGroup $route) {
         $route->map('GET', '/login', LoginPage::class);

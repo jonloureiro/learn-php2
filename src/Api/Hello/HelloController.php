@@ -17,7 +17,7 @@ class HelloController
         $response = $responseFactory->createResponse(202);
         $response->getBody()->write(
             json_encode([
-              "hello" => "world"
+              'hello' => 'world'
           ])
         );
         return $response;
