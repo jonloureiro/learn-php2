@@ -1,3 +1,3 @@
 <?php
 
-echo "TUDO NOVO";
+require_once dirname(__DIR__) . "/src/index.php";
