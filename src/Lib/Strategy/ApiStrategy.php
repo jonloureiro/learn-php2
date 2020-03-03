@@ -16,7 +16,12 @@ class ApiStrategy extends JsonStrategy
         ServerRequestInterface $request
     ): ResponseInterface {
         $controller = $route->getCallable($this->getContainer());
-        $response = $controller($this->responseFactory, $request, $route->getVars());
+        ['code' => $code, 'body' => $body ] = $controller($request, $route->getVars());
+        $code = $code ? $code : 200;
+        $response = $this->responseFactory->createResponse($code);
+        $response->getBody()->write(
+            json_encode($body)
+        );
         $response = $this->applyDefaultResponseHeaders($response);
         return $response;
     }
