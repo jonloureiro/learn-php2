@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--black-color);
+}
+
+.error-wrapper {
+  text-align: center;
+  color: var(--white-color);
+}
+
+.error-wrapper__code {
+  font-size: 10rem;
+  margin: 0;
+}
+
+.error-wrapper__message {
+  margin: 0;
+}

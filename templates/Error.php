@@ -5,8 +5,10 @@
     ]
 ]); ?>
 <body>
-  <h1>ERRO <?= $this->e($code) ?></h1>
-  <h2><?= $this->e($message) ?></h2>
+  <div class="error-wrapper">
+  <h1 class="error-wrapper__code"><?= $this->e($code) ?></h1>
+  <h2 class="error-wrapper__message"><?= $this->e($message) ?></h2>
+  </div>
   <script>
     console.error(`Status Code: <?= $this->e($code) . ". Message: " . $this->e($message) ?>`);
 <?php if (getenv('DEVELOPMENT')): ?>

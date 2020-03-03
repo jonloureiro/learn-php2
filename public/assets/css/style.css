@@ -1,4 +1,13 @@
-body {
-  background-color: #FDFDFD;
-  color: #2A2A2A;
+:root {
+  --white-color: #FDFDFD;
+  --black-color: #2A2A2A
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
 }
